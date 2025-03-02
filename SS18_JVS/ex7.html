@@ -10,22 +10,22 @@
       let a = +prompt("Nhap so a");
       let b = +prompt("Nhap so b");
       let operator = prompt("Nhap phep tinh (+, -, *, /)");
-      let cong = a + b;
-      let tru = a - b;
-      let nhan = a * b;
-      let chia = a / b;
+      let add = a + b;
+      let subtract = a - b;
+      let multiply = a * b;
+      let divide = a / b;
       switch (operator) {
         case "+":
-          document.write(`a + b = ${cong}`);
+          document.write(`a + b = ${add}`);
           break;
         case "-":
-          document.write(`a - b = ${tru}`);
+          document.write(`a - b = ${subtract}`);
           break;
         case "*":
-          document.write(`a * b = ${nhan}`);
+          document.write(`a * b = ${multiply}`);
           break;
         case "/":
-          document.write(`a / b = ${chia}`);
+          document.write(`a / b = ${divide}`);
           break;
         default:
           document.write(`Phep tinh khong hop le`);
