@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login System</title>
+  </head>
+  <body>
+    <script>
+      let name = prompt("Nhập tên đăng nhập:");
+      if (name === "ADMIN") {
+        let password = prompt("Nhập mật khẩu:");
+        if (password === "TheMaster") {
+          alert("Welcome");
+        } else if (password === null || password === "") {
+          alert("Cancelled");
+        } else {
+          alert("Wrong password");
+        }
+      } else if (name === null || name === "") {
+        alert("Cancelled");
+      } else {
+        alert("I don’t know you");
+      }
+    </script>
+  </body>
+</html>

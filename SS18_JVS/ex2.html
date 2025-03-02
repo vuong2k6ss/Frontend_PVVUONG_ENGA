@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let math = +prompt("nhập điểm toán: ");
+      let literature = +prompt("nhập điểm văn: ");
+      let english = +prompt("nhập điểm anh: ");
+      let avg = (math + literature + english) / 3;
+      document.write(`điểm trung bình 3 môn: ${avg} <br>`);
+      if (avg >= 8) {
+        document.write(`học lực giỏi`);
+      } else if (avg < 8 && avg >= 6.5) {
+        document.write(`học lực khá`);
+      } else if (avg < 6.5 && avg >= 5) {
+        document.write(`học lực trung bình`);
+      } else {
+        document.write(`học lực yếu`);
+      }
+    </script>
+  </body>
+</html>
