@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // // hàm splice trong jsv
+      // const menu = ["ad", "update","remove"];
+      // console.log("menu trước khi thêm", menu);
+      // //them phan tu vao mang bằng splice
+      // menu.splice(2, 0, "search", "sort", "filter");
+      // console.log("menu sau khi thêm: ", menu);
+
+      // //cập nhạt các ptu trong mảng
+      // menu.splice(1, 1, "export excel");
+      // console.log("menu sau cập nhatal: ");
+
+      // //xóa ptu ở vị trí nhất định
+      // menu.splice(3,1);
+      // console.log("menu sau khi xóa: ");
+      let choice;
+      const prices = [];
+      do {
+        choice = +prompt(
+          "mời bạn nhập yêu cầu: 1-thêm, 2-sửa, 3-xóa, 4-in, 5-tính tổng, 6-xóa toàn bộ giỏ hàng"
+        );
+        switch (choice) {
+          case 1:
+            let priceInput = +prompt("mời bạn nhập giá: ");
+            //them phan tu vao mảng
+            prices.push(priceInput);
+            alert("thêm giá thành công");
+            break;
+          case 2:
+            //lấy thông tin ng dùng: vị trí và giá trị cập nhâphj
+            const indexEdit = +prompt("mời bạn nhập vị trí:");
+            const valueEdit = +prompt("nhập giá mới: ");
+
+            if (indexEdit < prices.length) {
+              prices[indexEdit] = valueEdit;
+
+              alert("cập nhật gái thành công");
+            } else {
+              alert("vị trí kh hợp lệ");
+            }
+
+            break;
+          case 3:
+            const indexDeleta = +prompt("nhập vị trí cần xóa:");
+            if (indexEdit < prices.length) {
+              prices.splice(indexEdit, 1);
+              alert("xóa giá tiền thành công");
+            } else {
+              alert("vị trí kh hợp lệ");
+            }
+            break;
+          case 4:
+            //in danh sách
+            console.log("danh sách giá: ", prices);
+
+            break;
+          case 5:
+            let total = 0;
+            for (let i = 0; i < prices.length; i++) {
+              total += prices[i];
+            }
+            console.log("tổng tiền tring giỏ hàng: ", total);
+            break;
+          case 6:
+            //làm rỗng mảng
+            prices.length = 0;
+
+            break;
+          case 7:
+            break;
+        }
+      } while (choice !== 0);
+    </script>
+  </body>
+</html>
