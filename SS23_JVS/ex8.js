@@ -16,7 +16,7 @@ if (n < 3) {
 }
 console.log("Mảng đã nhập:", arr);
 if (isFibonacci) {
-    console.log(" Mảng này là một dãy số Fibonacci.");
+    console.log(" Mảng này là một dãy số Fibonacci");
 } else {
-    console.log(" Mảng này KHÔNG phải là một dãy số Fibonacci.");
+    console.log(" Mảng này KHÔNG phải là một dãy số Fibonacci");
 }
