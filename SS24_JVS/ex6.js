@@ -1,8 +1,8 @@
-let choice 
-let string
-let array =[]
-let temp
-let flag = 0
+let choice; 
+let string;
+let array =[];
+let temp;
+let flag = 0;
 do {
     choice = +prompt(`
         1. Nhap chuoi
@@ -13,10 +13,10 @@ do {
         6. Chuyen doi chuoi thanh chu in hoa cac ky tu dau tien cua tu
         7. Thoat
         =======================================
-         Lua chon cua ban la `)
+         Lua chon cua ban la `);
     switch (choice) {
         case 1:
-            string = prompt("Nhap chuoi")
+            string = prompt("Nhap chuoi");
             break;
         case 2:
             if (string.length == 0) {
@@ -37,11 +37,11 @@ do {
                 console.log(`Hay nhap chuoi truoc`);
                 break
             }
-            temp = 0
-            array=[]
+            temp = 0;
+            array=[];
             temp = prompt("Nhap ky tu ban muon tim trong chuoi")
             let count = 0
-            array = string.split("")
+            array = string.split("");
             for (let i = 0; i < array.length; i++) {
                 if (temp === array[i]) {
                     count++
@@ -59,13 +59,13 @@ do {
                 console.log(`Hay nhap chuoi truoc`);
                 break
             }
-            flag = 1
-            array=[]
-            array = [...string.split("")]
-            array.reverse()
+            flag = 1;
+            array=[];
+            array = [...string.split("")];
+            array.reverse();
             for (let i = 0; i < array.length; i++) {
                 if (string[i] !== array[i]) {
-                    flag = 0
+                    flag = 0;
                     break;
                 }
             }
@@ -81,16 +81,16 @@ do {
                 console.log(`Hay nhap chuoi truoc`);
                 break
             }
-            array = string.split("")            
-            array[0] = array[0].toUpperCase()
+            array = string.split("");            
+            array[0] = array[0].toUpperCase();
             if (array.includes(" ")) {
                 for (let i = 0; i < array.length; i++) {
                     if (array[i] == " ") {
-                        array[i+1] = array[i+1].toUpperCase()    
+                        array[i+1] = array[i+1].toUpperCase();    
                     }
                 }
             }
-            string = array.join("")
+            string = array.join("");
             break;
         case 7:
             console.log(`Thoat chuong trinh`);
