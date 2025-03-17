@@ -33,6 +33,12 @@ do {
             }
             break;
         case 3:
+            const idDelete = prompt("nhập id cần xóa: ");
+            const findIndexProductDelete = products.findIndex((product
+
+                
+            ))
+
             break;
         case 4:
             console.table(products);
