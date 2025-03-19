@@ -43,74 +43,7 @@ function searchBook() {
     }
 }
 
-function buyBook() {
-    let id = parseInt(prompt("Nhập ID sách muốn mua: "));
-    let qty = parseInt(prompt("Nhập số lượng: "));
 
-    let book = books.find(function (b) {
-        return b.id === id;
-    });
-
-    if (!book) {
-        console.log("Không tìm thấy sách.");
-        return;
-    }
-
-    if (book.quantity < qty) {
-        console.log("Không đủ sách trong kho.");
-        return;
-    }
-
-    book.quantity -= qty;
-    let cartItem = cart.find(function (c) {
-        return c.id === id;
-    });
-
-    if (cartItem) {
-        cartItem.quantity += qty;
-    } else {
-        cart.push({ id: id, name: book.name, price: book.price, quantity: qty });
-    }
-
-    console.log("Đã thêm vào giỏ hàng.");
-}
-
-function sortBooks(order) {
-    if (order === "1") {
-        books.sort(function (a, b) {
-            return a.price - b.price;
-        });
-    } else if (order === "2") {
-        books.sort(function (a, b) {
-            return b.price - a.price;
-        });
-    } else {
-        console.log("Lựa chọn không hợp lệ.");
-        return;
-    }
-    console.table(books);
-}
-
-function totalCart() {
-    let totalQty = 0;
-    let totalPrice = 0;
-
-    for (let i = 0; i < cart.length; i++) {
-        totalQty += cart[i].quantity;
-        totalPrice += cart[i].price * cart[i].quantity;
-    }
-
-    console.log("Tổng số sách đã mua: " + totalQty);
-    console.log("Tổng tiền: " + totalPrice + " VND");
-}
-
-function totalStock() {
-    let total = 0;
-    for (let i = 0; i < books.length; i++) {
-        total += books[i].quantity;
-    }
-    console.log("Tổng số sách trong kho: " + total);
-}
 
 function main() {
     let choice;

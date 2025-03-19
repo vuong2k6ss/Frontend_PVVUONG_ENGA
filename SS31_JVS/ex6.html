@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .login-container {
+        border: 2px solid black;
+        width: 300px;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+      }
+      .login-container label {
+        font-weight: bold;
+      }
+      .login-container input {
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0;
+      }
+      .login-container button {
+        padding: 8px 15px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <label for="username">username:</label>
+      <input type="text" id="username" />
+
+      <label for="password">password:</label>
+      <input type="password" id="password" />
+
+      <button onclick="login()">login</button>
+    </div>
+
+    <script>
+      function login() {
+        const correctUsername = "huanrose@gmail.com";
+        const correctPassword = "123456";
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        if (username === correctUsername && password === correctPassword) {
+          console.log("Đăng nhập thành công!");
+        } else {
+          console.log("Đăng nhập thất bại!");
+        }
+      }
+    </script>
+  </body>
+</html>

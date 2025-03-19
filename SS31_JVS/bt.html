@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Todolist</h1>
+    <div>
+      <form id="form">
+        <input type="text" id="job-name" />
+        <button type="submit" id="btn-submit">Submit</button>
+      </form>
+      <span style="display: none" id="error"></span>
+    </div>
+
+    <ul>
+      <li>quét nhà</li>
+      <li>giặt quần áo</li>
+      <li>chơi game</li>
+    </ul>
+
+    <script>
+      //lấy ra tất cả các element
+      const formElement = document.querySelector("#form");
+      const inputElement = document.querySelector("#job-name");
+      const btnElement = document.querySelector("#btn-submit");
+      const errorElement = document.querySelector("#error");
+      let inputValue;
+      let jobs = [];
+
+      // lấy giá trị bên trong input
+      inputElement.addEventListener("input", function (event) {
+        if (event.target.value) {
+          //hiển thị lỗi
+          errorElement.style.display = "block";
+          //thay đổi nội dung lỗi
+          errorElement.textContent = "tên công việc kh đc để trống";
+        } else {
+          //khi vcos gtri thì ẩn lỗi và gán gtri lấy từ input
+          errorElement.style.display = "none";
+        }
+        //gán gtri cho biến
+        inputValue = event.target.value;
+      });
+
+      // submit form
+      formElement.addEventListener("submit", function () {
+        //ngăn chặn sự kiện mặc định của form(load lại trang)
+        event.preventDefault();
+
+        //thêm công việc vào trong mảng
+        const newJob = {
+          id: Math.ceil(Math.random() * 10000),
+          name: inputValue,
+          status: false,
+        };
+      });
+    </script>
+  </body>
+</html>

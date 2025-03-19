@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box-green {
+        background-color: green;
+        height: 100px;
+        width: 100px;
+      }
+      .box-red {
+        background-color: red;
+        height: 100px;
+        width: 100px;
+      }
+      .box-purple {
+        background-color: plum;
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>change background-color</h3>
+    <p>Mouse click</p>
+    <button class="box-green" onclick="changeBgColor('green')">xanh</button>
+    <button class="box-red" onclick="changeBgColor('red')">đỏ</button>
+    <button class="box-purple" onclick="changeBgColor('violet')">tím</button>
+    <script>
+      function changeBgColor(color) {
+        document.body.style.backgroundColor = color;
+      }
+    </script>
+  </body>
+</html>
