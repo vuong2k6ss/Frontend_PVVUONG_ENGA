@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #f7f7f7;
+        text-align: center;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+      #increase {
+        background-color: #4caf4f;
+        text-align: center;
+        color: white;
+        border-radius: 3px;
+        border: 1px solid #4caf4f;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        margin-right: 15px;
+      }
+
+      #decrease {
+        background-color: red;
+        text-align: center;
+        color: white;
+        border-radius: 3px;
+        border: 1px solid red;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+      }
+
+      #decrease:hover {
+        background-color: rgb(210, 0, 0);
+      }
+
+      #increase:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <p id="text">Chữ sẽ thay đổi kích thước khi bấm nút</p>
+    <button id="increase">+</button>
+    <button id="decrease">-</button>
+
+    <script>
+      let textElement = document.getElementById("text");
+      let increaseBtn = document.getElementById("increase");
+      let decreaseBtn = document.getElementById("decrease");
+
+      let fontSize = 20;
+
+      increaseBtn.addEventListener("click", function () {
+        if (fontSize < 50) {
+          fontSize += 2;
+          textElement.style.fontSize = fontSize + "px";
+        }
+      });
+
+      decreaseBtn.addEventListener("click", function () {
+        if (fontSize > 10) {
+          fontSize -= 2;
+          textElement.style.fontSize = fontSize + "px";
+        }
+      });
+    </script>
+  </body>
+</html>

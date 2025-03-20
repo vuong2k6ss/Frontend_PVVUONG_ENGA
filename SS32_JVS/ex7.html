@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        cursor: pointer;
+        border: 2px solid #ddd;
+        border-radius: 5px;
+      }
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .overlay img {
+        width: auto;
+        height: 80%;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img
+        src="https://demoda.vn/wp-content/uploads/2022/03/anh-ve-chi.jpg"
+        alt=""
+      />
+      <img src="https://i.ytimg.com/vi/byku50lxAEE/maxresdefault.jpg" alt="" />
+      <img src="https://ppa.vn/newsmultidata/luyen-thi-kien-truc.jpg" alt="" />
+    </div>
+    <div class="overlay" id="overlay">
+      <img src="" alt="Phóng to ảnh" id="overlay-img" />
+    </div>
+
+    <script>
+      const images = document.querySelectorAll("img");
+      const overlay = document.getElementById("overlay");
+      const overlayImage = document.getElementById("overlay-img");
+      images.forEach((image) => {
+        image.addEventListener("click", () => {
+          overlayImage.src = image.src;
+          overlay.style.display = "flex";
+        });
+      });
+      overlay.addEventListener("click", () => {
+        overlay.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

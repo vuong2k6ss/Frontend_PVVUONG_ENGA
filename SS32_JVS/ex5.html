@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      #task-input {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 60%;
+        margin-right: 10px;
+      }
+
+      #add-task-btn {
+        padding: 8px 12px;
+        background-color: rgb(26, 163, 26);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      #add-task-btn:hover {
+        background-color: rgb(20, 140, 20);
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 20px;
+        width: 60%;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        background-color: #fff;
+        padding: 10px 15px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .delete-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 4px 8px;
+      }
+
+      .delete-btn:hover {
+        background-color: darkred;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>To-Do List K24_PTIT</h2>
+    <div>
+      <input id="task-input" type="text" placeholder="Nhập nhiệm vụ..." />
+      <button id="add-task-btn">Thêm</button>
+    </div>
+    <ul id="task-list">
+      <li>học dom js <button class="delete-btn">X</button></li>
+      <li>làm bài tập dom js <button class="delete-btn">X</button></li>
+    </ul>
+    <script>
+      const taskInput = document.getElementById("task-input");
+      const addTaskButton = document.getElementById("add-task-btn");
+      const taskList = document.getElementById("task-list");
+      addTaskButton.addEventListener("click", () => {
+        const task = taskInput.value.trim();
+        if (task === "") {
+          alert("Vui lòng nhập nhiệm vụ!");
+          return;
+        }
+        const newTask = document.createElement("li");
+        newTask.innerHTML = `${task} <button class="delete-btn">X</button>`;
+
+        const deleteButton = newTask.querySelector(".delete-btn");
+        deleteButton.addEventListener("click", () => {
+          const confirmDelete = confirm("Bạn có chắc muốn xóa nhiệm vụ này?");
+          if (confirmDelete) {
+            taskList.removeChild(newTask);
+          }
+        });
+        taskList.appendChild(newTask);
+        taskInput.value = "";
+      });
+    </script>
+  </body>
+</html>

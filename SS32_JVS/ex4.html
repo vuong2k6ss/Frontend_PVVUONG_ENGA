@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #checkEmail {
+        display: none;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" id="email-input" placeholder="Nhập email" />
+      <br />
+      <span id="checkEmail"></span>
+      <br />
+      <button id="btn-check">Check</button>
+    </form>
+
+    <script>
+      let formSubmit = document.querySelector("#form");
+      let emailElement = document.querySelector("#email-input");
+      let checkEmailElement = document.querySelector("#checkEmail");
+      let btnCheck = document.querySelector("#btn-check");
+      formSubmit.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let email = emailElement.value.trim();
+        if (
+          !email.includes("@") ||
+          (!email.endsWith(".com") && !email.endsWith(".vn"))
+        ) {
+          checkEmailElement.style.color = "red";
+          checkEmailElement.textContent = "Email không hợp lệ!";
+        } else {
+          checkEmailElement.style.color = "green";
+          checkEmailElement.textContent = "Email hợp lệ!";
+        }
+        checkEmailElement.style.display = "block";
+      });
+    </script>
+  </body>
+</html>

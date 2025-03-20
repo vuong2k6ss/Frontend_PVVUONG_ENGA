@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="button-random">Doi mau nen</button>
+    <script>
+      const buttonRandom = document.querySelector(".button-random");
+      const colors = [
+        "#ff5733",
+        "#6a0572",
+        "#ffcc29",
+        "#34a853",
+        "#4285f4",
+        "#db3236",
+        "#f4b400",
+        "#0f9d58",
+        "#f48fb1",
+        "#8e24aa",
+        "#1de9b6",
+        "#ff7043",
+      ];
+      buttonRandom.addEventListener("click", function () {
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.body.style.backgroundColor = randomColor;
+      });
+    </script>
+  </body>
+</html>
