@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: 100vw;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .container .produce-group {
+        display: flex;
+        width: 100%;
+      }
+
+      .container .search-group {
+        display: flex;
+        width: 100%;
+        gap: 5px;
+      }
+
+      .search-group .search {
+        width: 85%;
+        border-radius: 5px;
+        border: 1px solid #dadada;
+        padding-left: 10px;
+      }
+
+      .search-group .btnSearch {
+        width: 10%;
+        padding: 10px;
+        text-align: center;
+        color: white;
+        background-color: #198754;
+        border-radius: 5px;
+      }
+
+      .search-group .btnSearch:hover {
+        cursor: pointer;
+        background-color: #1b995e;
+      }
+
+      .produce-group .item {
+        width: calc(100% / 4 - 20px);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .produce-group .item img {
+        width: 100%;
+      }
+
+      .produce-group .item .description,
+      .produce-group .item .priceOfItem {
+        color: gray;
+      }
+
+      .produce-group .item .btnBuy {
+        padding: 5px;
+        color: white;
+        background-color: #0d6efd;
+        width: 60px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="search-group">
+        <input type="text" class="search" placeholder="Search" />
+        <div class="btnSearch">Search</div>
+      </div>
+      <div class="produce-group">
+        <div class="item">
+          <img
+            src="https://mayinlaser.vn/wp-content/uploads/2021/07/XPS-15_left-angle-open.jpg"
+            alt=""
+          />
+          <p class="nameOfProduce">Laptop Dell XPS 15</p>
+          <p class="description">
+            Laptop cao cáp với màn hình 15 inch, CPU Intel Core i7 và RAM 16GB
+          </p>
+          <p class="priceOfItem">10000 VND</p>
+          <div class="btnBuy">Buy</div>
+        </div>
+      </div>
+    </div>
+    <script src="./ex4.js"></script>
+  </body>
+</html>

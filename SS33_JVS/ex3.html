@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lọc sản phẩm theo danh mục</title>
+    <style>
+      .container {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      select,
+      button {
+        margin: 10px 0;
+        padding: 5px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <select id="category-select">
+        <option value="">Chọn danh mục</option>
+        <option value="Đồ ăn">Đồ ăn</option>
+        <option value="Nước">Nước</option>
+        <option value="Dụng cụ">Dụng cụ</option>
+      </select>
+      <button id="filter-btn">Lọc</button>
+      <ul id="product-list"></ul>
+    </div>
+    <script>
+      const products = [
+        { name: "Rau sạch", category: "Đồ ăn" },
+        { name: "Thịt lợn", category: "Đồ ăn" },
+        { name: "Pepsi không calo", category: "Nước" },
+        { name: "Cocacola", category: "Nước" },
+        { name: "Cờ lê", category: "Dụng cụ" },
+        { name: "Tuy vít", category: "Dụng cụ" },
+      ];
+      const categorySelect = document.getElementById("category-select");
+      const filterBtn = document.getElementById("filter-btn");
+      const productList = document.getElementById("product-list");
+      filterBtn.addEventListener("click", () => {
+        const selectedCategory = categorySelect.value;
+        productList.innerHTML = "";
+        if (selectedCategory) {
+          const filteredProducts = products.filter(
+            (product) => product.category === selectedCategory
+          );
+          filteredProducts.forEach((product) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = product.name;
+            productList.appendChild(listItem);
+          });
+        } else {
+          productList.innerHTML = "<li>Vui lòng chọn danh mục!</li>";
+        }
+      });
+    </script>
+  </body>
+</html>

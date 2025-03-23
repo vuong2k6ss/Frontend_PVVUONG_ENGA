@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      .password-container {
+        position: relative;
+        width: 300px;
+        margin: 20px auto;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .toggle-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Nhập mật khẩu</h2>
+    <div class="password-container">
+      <input
+        type="password"
+        id="passwordInput"
+        placeholder="Enter your password"
+      />
+      <span class="toggle-icon" onclick="togglePassword()">🙈</span>
+    </div>
+
+    <script>
+      function togglePassword() {
+        let passwordField = document.getElementById("passwordInput");
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+        } else {
+          passwordField.type = "password";
+        }
+      }
+    </script>
+  </body>
+</html>

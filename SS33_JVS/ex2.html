@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Character Counter</title>
+    <style>
+      .container {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      textarea {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+      .output {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <textarea id="input-text"></textarea>
+      <br />
+      <button id="count-btn">Kiểm tra</button>
+      <div id="output" class="output">0 ký tự</div>
+    </div>
+    <script>
+      const textarea = document.getElementById("input-text");
+      const countButton = document.getElementById("count-btn");
+      const output = document.getElementById("output");
+      countButton.addEventListener("click", () => {
+        const textLength = textarea.value.length;
+        output.textContent = `${textLength} ký tự`;
+      });
+    </script>
+  </body>
+</html>
