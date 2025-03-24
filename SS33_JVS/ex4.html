@@ -16,12 +16,15 @@
         padding: 20px;
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 20px;
       }
 
       .container .produce-group {
         display: flex;
+        flex-wrap: wrap;
         width: 100%;
+        gap: 10px;
       }
 
       .container .search-group {
@@ -52,14 +55,26 @@
       }
 
       .produce-group .item {
-        width: calc(100% / 4 - 20px);
+        flex-basis: calc(100% / 6 - 20px);
         display: flex;
         flex-direction: column;
+        justify-content: flex-end;
         gap: 10px;
+        padding: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 5px;
+        background-color: white;
+      }
+
+      .produce-group .item:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        transition: all 0.2s linear;
       }
 
       .produce-group .item img {
         width: 100%;
+        height: 150px;
       }
 
       .produce-group .item .description,
@@ -73,6 +88,12 @@
         background-color: #0d6efd;
         width: 60px;
         text-align: center;
+        border-radius: 5px;
+      }
+
+      .produce-group .item .btnBuy:hover {
+        cursor: pointer;
+        background-color: #448fff;
       }
     </style>
   </head>
@@ -82,20 +103,7 @@
         <input type="text" class="search" placeholder="Search" />
         <div class="btnSearch">Search</div>
       </div>
-      <div class="produce-group">
-        <div class="item">
-          <img
-            src="https://mayinlaser.vn/wp-content/uploads/2021/07/XPS-15_left-angle-open.jpg"
-            alt=""
-          />
-          <p class="nameOfProduce">Laptop Dell XPS 15</p>
-          <p class="description">
-            Laptop cao cáp với màn hình 15 inch, CPU Intel Core i7 và RAM 16GB
-          </p>
-          <p class="priceOfItem">10000 VND</p>
-          <div class="btnBuy">Buy</div>
-        </div>
-      </div>
+      <div class="produce-group"></div>
     </div>
     <script src="./ex4.js"></script>
   </body>
