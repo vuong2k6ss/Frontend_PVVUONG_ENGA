@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f8f9fa;
+      }
+      .container {
+        max-width: 700px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      table {
+        width: 100%;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="text-center">Task Management</h2>
+
+      <div class="d-flex gap-2 mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Content"
+          id="content"
+        />
+        <input type="date" class="form-control" id="date" />
+        <select class="form-select" id="status">
+          <option value="Choose">Choose Status</option>
+          <option value="Completed">Completed</option>
+        </select>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          id="username"
+        />
+        <button class="btn btn-primary" id="btn">Submit</button>
+      </div>
+
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Content</th>
+            <th>Due date</th>
+            <th>Status</th>
+            <th>Assigned to</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <script>
+      // Lấy danh sách công việc từ Local Storage hoặc khởi tạo mảng rỗng
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+      // Hiển thị danh sách đầu việc
+      function renderTasks() {
+        const tableBody = document.getElementById("table-body");
+        tableBody.innerHTML = "";
+
+        tasks.forEach((task, index) => {
+          let row = `
+            <tr>
+              <td>${index + 1}</td>
+              <td>${task.content}</td>
+              <td>${task.dueDate}</td>
+              <td>${task.status}</td>
+              <td>${task.assignedTo}</td>
+              <td>
+                <button class="btn btn-warning btn-sm" onclick="editTask(${index})">Sửa</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteTask(${index})">Xóa</button>
+              </td>
+            </tr>`;
+          tableBody.innerHTML += row;
+        });
+
+        // Lưu vào Local Storage
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      // Thêm hoặc cập nhật công việc
+      document.getElementById("btn").addEventListener("click", function () {
+        let content = document.getElementById("content").value.trim();
+        let dueDate = document.getElementById("date").value;
+        let status = document.getElementById("status").value;
+        let assignedTo = document.getElementById("username").value.trim();
+
+        if (!content || !dueDate || !assignedTo) {
+          alert("Vui lòng nhập đầy đủ thông tin!");
+          return;
+        }
+
+        // Kiểm tra xem có đang sửa công việc không
+        let taskIndex = document.getElementById("btn").dataset.index;
+        if (taskIndex !== undefined) {
+          tasks[taskIndex] = { content, dueDate, status, assignedTo };
+          delete document.getElementById("btn").dataset.index;
+          document.getElementById("btn").textContent = "Submit";
+        } else {
+          tasks.push({ content, dueDate, status, assignedTo });
+        }
+
+        // Làm sạch input và cập nhật danh sách
+        document.getElementById("content").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("status").value = "Pending";
+        document.getElementById("username").value = "";
+
+        renderTasks();
+      });
+
+      // Xóa công việc
+      function deleteTask(index) {
+        if (confirm("Bạn có chắc muốn xóa công việc này?")) {
+          tasks.splice(index, 1);
+          renderTasks();
+        }
+      }
+
+      // Sửa công việc
+      function editTask(index) {
+        let task = tasks[index];
+        document.getElementById("content").value = task.content;
+        document.getElementById("date").value = task.dueDate;
+        document.getElementById("status").value = task.status;
+        document.getElementById("username").value = task.assignedTo;
+
+        document.getElementById("btn").textContent = "Cập nhật";
+        document.getElementById("btn").dataset.index = index;
+      }
+
+      // Hiển thị danh sách công việc khi tải trang
+      renderTasks();
+    </script>
+  </body>
+</html>
