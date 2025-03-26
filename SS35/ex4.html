@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      .pagination .active {
+        background-color: #007bff;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Danh sách nhân viên Rikkei</h1>
+      <div class="d-flex justify-content-center mb-3">
+        <input
+          type="text"
+          id="employeeName"
+          class="form-control me-2"
+          placeholder="Tên nhân viên"
+          style="width: 200px"
+        />
+        <input
+          type="text"
+          id="employeePosition"
+          class="form-control me-2"
+          placeholder="Chức vụ"
+          style="width: 200px"
+        />
+        <button class="btn btn-primary" onclick="addEmployee()">
+          Thêm nhân viên
+        </button>
+      </div>
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên</th>
+            <th>Chức vụ</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="employeeTable">
+          <!-- Danh sách nhân viên sẽ được hiển thị tại đây -->
+        </tbody>
+      </table>
+      <nav>
+        <ul class="pagination justify-content-center" id="pagination">
+          <!-- Phân trang sẽ được hiển thị tại đây -->
+        </ul>
+      </nav>
+    </div>
+
+    <script>
+      const employees = []; // Mảng lưu trữ danh sách nhân viên
+      const itemsPerPage = 3; // Số nhân viên hiển thị trên mỗi trang
+      let currentPage = 1; // Trang hiện tại
+
+      // Hàm lưu dữ liệu vào Local Storage
+      function saveToLocalStorage() {
+        localStorage.setItem("employees", JSON.stringify(employees));
+      }
+
+      // Hàm tải dữ liệu từ Local Storage
+      function loadFromLocalStorage() {
+        const storedEmployees = localStorage.getItem("employees");
+        if (storedEmployees) {
+          employees.push(...JSON.parse(storedEmployees));
+        }
+      }
+
+      // Hàm hiển thị danh sách nhân viên
+      function renderEmployees() {
+        const employeeTable = document.getElementById("employeeTable");
+        employeeTable.innerHTML = ""; // Xóa nội dung cũ
+
+        // Tính toán chỉ số bắt đầu và kết thúc
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = Math.min(startIndex + itemsPerPage, employees.length);
+
+        // Hiển thị nhân viên trong khoảng chỉ số
+        for (let i = startIndex; i < endIndex; i++) {
+          const employee = employees[i];
+          const row = `
+            <tr>
+              <td>${i + 1}</td>
+              <td>${employee.name}</td>
+              <td>${employee.position}</td>
+              <td>
+                <button class="btn btn-danger btn-sm" onclick="deleteEmployee(${i})">Xóa</button>
+              </td>
+            </tr>
+          `;
+          employeeTable.innerHTML += row;
+        }
+
+        renderPagination(); // Cập nhật phân trang
+      }
+
+      // Hàm hiển thị phân trang
+      function renderPagination() {
+        const pagination = document.getElementById("pagination");
+        pagination.innerHTML = ""; // Xóa nội dung cũ
+
+        const totalPages = Math.ceil(employees.length / itemsPerPage);
+
+        // Nút "Previous"
+        const prevClass = currentPage === 1 ? "disabled" : "";
+        pagination.innerHTML += `
+          <li class="page-item ${prevClass}">
+            <button class="page-link" onclick="changePage(${
+              currentPage - 1
+            })">Previous</button>
+          </li>
+        `;
+
+        // Các nút số trang
+        for (let i = 1; i <= totalPages; i++) {
+          const activeClass = currentPage === i ? "active" : "";
+          pagination.innerHTML += `
+            <li class="page-item ${activeClass}">
+              <button class="page-link" onclick="changePage(${i})">${i}</button>
+            </li>
+          `;
+        }
+
+        // Nút "Next"
+        const nextClass = currentPage === totalPages ? "disabled" : "";
+        pagination.innerHTML += `
+          <li class="page-item ${nextClass}">
+            <button class="page-link" onclick="changePage(${
+              currentPage + 1
+            })">Next</button>
+          </li>
+        `;
+      }
+
+      // Hàm thay đổi trang
+      function changePage(page) {
+        const totalPages = Math.ceil(employees.length / itemsPerPage);
+        if (page < 1 || page > totalPages) return; // Không thay đổi nếu trang không hợp lệ
+        currentPage = page;
+        renderEmployees();
+      }
+
+      // Hàm thêm nhân viên
+      function addEmployee() {
+        const nameInput = document.getElementById("employeeName");
+        const positionInput = document.getElementById("employeePosition");
+
+        const name = nameInput.value.trim();
+        const position = positionInput.value.trim();
+
+        if (!name || !position) {
+          alert("Vui lòng nhập đầy đủ thông tin!");
+          return;
+        }
+
+        // Thêm nhân viên vào mảng
+        employees.push({ name, position });
+
+        // Lưu dữ liệu vào Local Storage
+        saveToLocalStorage();
+
+        // Reset input
+        nameInput.value = "";
+        positionInput.value = "";
+
+        // Hiển thị lại danh sách nhân viên
+        currentPage = Math.ceil(employees.length / itemsPerPage); // Chuyển đến trang cuối
+        renderEmployees();
+      }
+
+      // Hàm xóa nhân viên
+      function deleteEmployee(index) {
+        if (confirm("Bạn có chắc chắn muốn xóa nhân viên này không?")) {
+          employees.splice(index, 1); // Xóa nhân viên khỏi mảng
+          saveToLocalStorage(); // Cập nhật Local Storage
+          renderEmployees(); // Hiển thị lại danh sách
+        }
+      }
+
+      // Tải dữ liệu từ Local Storage khi tải trang
+      loadFromLocalStorage();
+
+      // Hiển thị danh sách nhân viên khi tải trang
+      renderEmployees();
+    </script>
+  </body>
+</html>
