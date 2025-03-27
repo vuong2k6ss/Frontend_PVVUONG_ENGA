@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        background-color: #dadada;
+        width: 500px;
+        height: 30vh;
+        text-align: center;
+        padding-top: 24px;
+      }
+
+      h2 {
+        margin-bottom: 24px;
+      }
+      button {
+        margin-bottom: 24px;
+        width: 60px;
+        height: 25px;
+        margin-left: 12px;
+        border-radius: 5px;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .btn-red:hover {
+        background-color: rgb(203, 13, 13);
+      }
+      .btn-blue:hover {
+        background-color: rgb(55, 10, 179);
+      }
+      .btn-yellow:hover {
+        background-color: rgb(209, 209, 13);
+      }
+      .btn-purple:hover {
+        background-color: rgb(143, 5, 108);
+      }
+
+      .btn-red {
+        background-color: red;
+      }
+      .btn-blue {
+        background-color: rgb(56, 56, 246);
+      }
+      .btn-yellow {
+        background-color: rgb(251, 251, 47);
+        color: black;
+      }
+      .btn-purple {
+        background-color: rgb(202, 15, 202);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Chọn màu nền bạn yêu thích</h2>
+      <button class="btn-red">Đỏ</button>
+      <button class="btn-blue">Xanh</button>
+      <button class="btn-yellow">Vàng</button>
+      <button class="btn-purple">Tím</button>
+      <p>Trang sẽ ghi nhớ màu bạn đã chọn kể cả khi tải lại trang</p>
+    </div>
+    <script>
+      const btnRedElement = document.querySelector(".btn-red");
+      const btnBlueElement = document.querySelector(".btn-blue");
+      const btnYellowElement = document.querySelector(".btn-yellow");
+      const btnPurpleElement = document.querySelector(".btn-purple");
+      const containerElement = document.querySelector(".container");
+
+      // Hàm đổi màu nền và lưu vào localStorage
+      function changeBackgroundColor(color) {
+        containerElement.style.backgroundColor = color;
+        localStorage.setItem("backgroundColor", color);
+      }
+
+      // Gán sự kiện click cho từng nút
+      btnRedElement.addEventListener("click", function () {
+        changeBackgroundColor("red");
+      });
+      btnBlueElement.addEventListener("click", function () {
+        changeBackgroundColor("blue");
+      });
+      btnYellowElement.addEventListener("click", function () {
+        changeBackgroundColor("yellow");
+      });
+      btnPurpleElement.addEventListener("click", function () {
+        changeBackgroundColor("purple");
+      });
+
+      const savedColor = localStorage.getItem("backgroundColor");
+      containerElement.style.backgroundColor = savedColor;
+    </script>
+  </body>
+</html>
